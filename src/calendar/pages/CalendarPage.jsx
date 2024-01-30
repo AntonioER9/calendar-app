@@ -1,23 +1,14 @@
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { Calendar } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-import { addHours, format, parse, startOfWeek, getDay } from 'date-fns';
-import enUS from 'date-fns/locale/en-US';
+import { addHours } from 'date-fns';
+import { CalendarEvent, Navbar } from "../";
+
+import { localizer, getMessagesES } from '../../helpers';
+import { useState } from 'react';
 
 
-import { Navbar } from "../";
 
-const locales = {
-  'en-US': enUS,
-}
-
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-})
 
 const events = [{
   title: 'Cumpleaños',
@@ -33,15 +24,54 @@ const events = [{
 }]
 
 export const CalendarPage = () => {
+
+  const [lastView, setlastView] = useState(localStorage.getItem('lastView') || 'week');
+
+  const eventStyleGetter = (event, start, end, isSelected) => {
+  
+    const style = {
+      backgroundColor: '#347CF7',
+      borderRadius: '0px',
+      opacity: 0.8,
+      color: 'white'
+    }
+
+    return {
+      style
+    }
+
+  }
+
+  const onDoubleClick = ( event ) => {
+    console.log({doubleClick: event});
+  }
+  const onSelect = ( event ) => {
+    console.log({click: event});
+  }
+  const onViewChanged = ( event ) => {
+    localStorage.setItem('lastView', event);
+    setlastView(event);
+  }
+
   return (
     <>
       <Navbar/>
       <Calendar
+        culture='es'
         localizer={localizer}
         events={ events }
+        defaultView={lastView}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 'calc(100vh - 80px)' }}
+        messages={ getMessagesES() }
+        eventPropGetter={ eventStyleGetter }
+        components={{
+          event: CalendarEvent
+        }}
+        onDoubleClickEvent={onDoubleClick}
+        onSelectEvent={onSelect}
+        onView={onViewChanged}
       />
     </>
   )
