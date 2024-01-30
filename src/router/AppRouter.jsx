@@ -6,7 +6,7 @@ import { CalendarPage } from '../calendar';
 //Componente en el cual llevaremos el manejo de las rutas
 export const AppRouter = () => {
 
-  const authStatus = 'not-authenticated'; //authenticated
+  const authStatus =  'authenticated';//'not-authenticated'; //authenticated
 
   return (
     <Routes>
