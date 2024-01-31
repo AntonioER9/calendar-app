@@ -1,7 +1,7 @@
 //Información sobre el UI
 import { createSlice } from '@reduxjs/toolkit';
 
-export const uiSlice = createSlice({
+export const uiSlice = createSlice({ //modifica el state de nuestra app
     name: 'ui',
     initialState: {
         isDateModalOpen: false
