@@ -20,8 +20,8 @@ export const useUiStore = () => { // hook para utilizar los reducers proveniente
 
     const toggleDateModal = () => { //Función togle abrir y cerrar el modal
         (isDateModalOpen)
-            ? openDateModal()
-            : closeDateModal();
+            ? closeDateModal()
+            : openDateModal();
     }
 
 

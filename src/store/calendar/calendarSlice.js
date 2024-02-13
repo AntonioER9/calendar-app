@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 // const tempEvent = {
-//     _id: new Date().getTime(),
+//     id: new Date().getTime(),
 //     title: 'Cumpleaños',
 //     notes: 'Hay que comprar un pastel',
 //     start: new Date(),
